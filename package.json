@@ -1,0 +1,22 @@
+{
+  "name": "loliemsoundboard",
+  "version": "0.0.1",
+  "description": "A discord soundboard for degenerates",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sameerraghuram/loliemsoundboard.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sameerraghuram/loliemsoundboard/issues"
+  },
+  "homepage": "https://github.com/sameerraghuram/loliemsoundboard#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}

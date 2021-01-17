@@ -51,7 +51,7 @@ client.on('message', message => {
   if(client.commands.get(command.slice(prefix.length))) {
     let cmd = client.commands.get(command.slice(prefix.length));
     if (cmd) {
-      cmd.run(client, msg, args);
+      cmd.run(client, message, args);
     }
   }
   console.log(`${message.author.username} said: ${message.content}`);

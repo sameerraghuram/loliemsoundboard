@@ -9,8 +9,9 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 // Import config from dotenv
-let prefix;
+const prefix = process.env.BOT_PREFIX;
 const owner = process.env.OWNER;
+const clientId = process.env.BOT_CLIENT_ID;
 const token = process.env.TOKEN;
 
 // Read command files
@@ -40,8 +41,20 @@ client.on('ready', async () => {
 });
 
 // Command handler
-client.on('message', msg => {
-  console.log(msg.content);
+client.on('message', message => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  let msg_array = message.content.split(' ');
+  let command = msg_array[0];
+  let args = msg_array.slice(1);
+
+  if(client.commands.get(command.slice(prefix.length))) {
+    let cmd = client.commands.get(command.slice(prefix.length));
+    if (cmd) {
+      cmd.run(client, msg, args);
+    }
+  }
+  console.log(`${message.author.username} said: ${message.content}`);
 });
 
 // Bot Login

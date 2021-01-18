@@ -9,7 +9,13 @@ module.exports.run = async (client, message, args) => {
         const connection = await message.member.voice.channel.join();
         const commandFilename = args[0]
         
-        connection.play(fs.createReadStream(`${cwd}/static/${commandFilename}.ogg`), { type: 'ogg/opus' });
+        const dispatcher = connection.play(fs.createReadStream(`${cwd}/static/${commandFilename}.ogg`), { type: 'ogg/opus' });
+        dispatcher.on('finish', () => {
+            setTimeout(() => {
+                console.log('audio has finished playing!');
+                connection.disconnect();
+            }, 1000)
+        });
 	}
 }
   

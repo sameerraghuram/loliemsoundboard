@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const fetch = require('node-fetch');
+const utils  = require('./utils');
 require('dotenv/config');
 
 // Init bot
@@ -13,6 +14,7 @@ const prefix = process.env.BOT_PREFIX;
 const owner = process.env.OWNER;
 const clientId = process.env.BOT_CLIENT_ID;
 const token = process.env.TOKEN;
+
 
 // Read command files
 fs.readdir('./cmds', (err, files) => {
@@ -42,7 +44,7 @@ client.on('ready', async () => {
 
 // Command handler
 client.on('message', message => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (!message.content.startsWith(prefix) || !utils.isMessageServiceable(message)) return;
 
   let msg_array = message.content.split(' ');
   let command = msg_array[0];

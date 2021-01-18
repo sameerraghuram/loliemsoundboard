@@ -1,12 +1,14 @@
 const fs = require('fs');
+const utils = require('../utils');
 const cwd = process.cwd();
 
 module.exports.run = async (client, message, args) => {
     if(!args.length) {
         message.channel.send('needs input');
     }
-    if (message.member.voice.channel) {
-        const connection = await message.member.voice.channel.join();
+    const voiceChannel = utils.getVoiceChannelId(message)
+    if (voiceChannel) {
+        const connection = await voiceChannel.join();
         const commandFilename = args[0]
         
         const dispatcher = connection.play(fs.createReadStream(`${cwd}/static/${commandFilename}.ogg`), { type: 'ogg/opus' });

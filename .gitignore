@@ -3,3 +3,4 @@ node_modules/*
 steamAppList.json
 serviceAccount.json
 static/*.ogg
+.vscode/*

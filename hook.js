@@ -10,4 +10,7 @@ const webhookClient = new Discord.WebhookClient(config.webhookID, config.webhook
 webhookClient.send('!play tunaa', {
     username: config.clientId,
     avatarURL: 'https://i.imgur.com/wSTFkRM.png',
-}).then(() => webhookClient.delete);
+}).then(() => setTimeout(() => {
+    webhookClient.delete
+    }, 1000) 
+);

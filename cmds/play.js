@@ -16,6 +16,7 @@ module.exports.run = async (client, message, args) => {
             setTimeout(() => {
                 console.log('audio has finished playing!');
                 connection.disconnect();
+                message.delete();
             }, 1000)
         });
 	}

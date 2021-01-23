@@ -21,7 +21,7 @@ function isMessageServiceable(message) {
 function getVoiceChannelId(message) {
     if(!isSoundBardMessage(message) && !message.bot) {
         // human
-        return message.member.voice.channel.id;
+        return message.member.voice.channel;
     }
     const userId = message.author.username;
 
